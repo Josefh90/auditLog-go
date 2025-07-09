@@ -1,4 +1,4 @@
-module github.com/Josefh90/go-auditlog
+module github.com/Josefh90/auditLog-go
 
 go 1.24.4
 
