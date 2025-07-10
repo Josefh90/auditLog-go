@@ -1,0 +1,56 @@
+run:
+  timeout: 3m
+  tests: true
+  concurrency: 4
+
+linters:
+  enable:
+    - govet           # Standard: findet echte Fehler
+    - staticcheck     # Tiefere statische Analyse
+    - errcheck        # Nicht geprüfte Errors
+    - gosimple        # Vereinfachung von Code
+    - unused          # Nicht verwendete Variablen / Imports
+    - typecheck       # Typprüfung
+    - revive          # Stil & Best Practices
+    - gofmt           # Code-Formatierung
+    - goimports       # Import-Formatierung
+    - gocritic        # Verbesserungs- und Stilvorschläge
+    - bodyclose       # HTTP-Response.Body korrekt schließen
+    - dupl            # Duplikate im Code
+    - unparam         # Nicht genutzte Parameter erkennen
+    - goconst         # Wiederholte Strings als Konstanten
+    - ineffassign     # Nicht genutzte Zuweisungen
+    - nolintlint      # Prüft Verwendung von //nolint
+    - gosec           # Sicherheitsrelevante Schwachstellen
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+
+  gofmt:
+    simplify: true
+
+  goimports:
+    local-prefixes: github.com/your/module
+
+  revive:
+    ignore-generated-header: true
+    severity: warning
+    rules:
+      - name: indent-error-flow
+      - name: var-naming
+      - name: blank-imports
+      - name: line-length-limit
+        arguments: [120]
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  exclude:
+    - "Error return value is not checked.*(Close|Write|Flush)"  # optional: bestimmte Checks ignorieren
+
+output:
+  formats: colored-line-number
+  sort-results: true
+  print-issued-lines: true

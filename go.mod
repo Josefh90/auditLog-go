@@ -3,7 +3,6 @@ module github.com/Josefh90/auditLog-go
 go 1.24.4
 
 require (
-	gorm.io/datatypes v1.2.6
 	gorm.io/gorm v1.30.0
 )
 

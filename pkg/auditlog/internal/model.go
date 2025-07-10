@@ -1,9 +1,7 @@
-package auditlog
+package internal
 
 import (
 	"time"
-
-	"gorm.io/datatypes"
 )
 
 // AuditLog represents a single entry in the audit log.
@@ -15,9 +13,9 @@ type AuditLog struct {
 
 	Action string // Type of action performed (e.g., CREATE, UPDATE, DELETE)
 
-	NewData datatypes.JSON // JSON representation of the new data (after the change)
+	NewData []byte `gorm:"type:jsonb"`
 
-	OldData datatypes.JSON // JSON representation of the old data (before the change)
+	OldData []byte `gorm:"type:jsonb"`
 
 	CreatedAt time.Time // Timestamp when the audit log entry was created
 }
